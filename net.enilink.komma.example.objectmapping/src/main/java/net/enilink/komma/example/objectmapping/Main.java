@@ -46,7 +46,7 @@ public class Main {
 		// create a book
 		Book book = manager.createNamed(Library.URI.appendFragment("book1"),
 				Book.class);
-		book.setTitle("BookY");
+		book.setTitle("Point of No Return");
 		// add some authors
 		book.getAuthors().add(
 				createPerson(manager, "person1", "Clint Eastwood", new Date()));
