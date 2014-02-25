@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: KOMMA - behaviour example
+Bundle-SymbolicName: net.enilink.komma.example.behaviour
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: net.enilink.komma.example.objectmapping;bundle-version="1.0.0",
+ net.enilink.komma.core,
+ net.enilink.composition,
+ net.enilink.commons.iterator,
+ org.openrdf.sesame,
+ net.enilink.komma.em
+Import-Package: com.google.inject
+Bundle-Vendor: enilink.net
