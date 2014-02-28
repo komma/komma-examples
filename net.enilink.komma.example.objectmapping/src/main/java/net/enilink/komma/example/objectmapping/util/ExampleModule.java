@@ -7,10 +7,7 @@ import net.enilink.komma.dm.IDataManagerFactory;
 import net.enilink.komma.em.CacheModule;
 import net.enilink.komma.em.CachingEntityManagerModule;
 import net.enilink.komma.em.EntityManagerFactoryModule;
-import net.enilink.komma.em.util.KommaUtil;
 import net.enilink.komma.em.util.UnitOfWork;
-import net.enilink.komma.example.objectmapping.model.Book;
-import net.enilink.komma.example.objectmapping.model.Person;
 import net.enilink.komma.sesame.SesameModule;
 
 import org.openrdf.repository.Repository;
