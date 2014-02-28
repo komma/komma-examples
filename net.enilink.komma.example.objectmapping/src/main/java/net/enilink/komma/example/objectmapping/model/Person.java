@@ -15,7 +15,7 @@ public interface Person {
 	@Iri(Library.URI_STRING + "dateOfBirth")
 	XMLGregorianCalendar getDateOfBirth();
 
-	void setDateOfBirth(XMLGregorianCalendar date);
+	void setDateOfBirth(XMLGregorianCalendar dateOfBirth);
 
 	@Iri(Library.URI_STRING + "placeOfBirth")
 	String getPlaceOfBirth();
