@@ -4,15 +4,15 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import net.enilink.composition.annotations.Iri;
 
-@Iri(Library.URI_STRING + "Document")
+@Iri(Library.NS + "Document")
 public interface Document {
 
-	@Iri(Library.URI_STRING + "dateOfRelease")
+	@Iri(Library.NS + "dateOfRelease")
 	XMLGregorianCalendar getDateOfRelease();
 
 	void setDateOfRelease(XMLGregorianCalendar dateOfRelease);
 
-	@Iri(Library.URI_STRING + "title")
+	@Iri(Library.NS + "title")
 	String getTitle();
 
 	void setTitle(String title);

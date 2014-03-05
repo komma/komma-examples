@@ -4,10 +4,10 @@ import java.util.Set;
 
 import net.enilink.composition.annotations.Iri;
 
-@Iri(Library.URI_STRING + "Book")
+@Iri(Library.NS + "Book")
 public interface Book extends Document {
 
-	@Iri(Library.URI_STRING + "author")
+	@Iri(Library.NS + "author")
 	Set<Person> getAuthors();
 
 	void setAuthors(Set<Person> persons);
