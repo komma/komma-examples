@@ -14,7 +14,6 @@ Import-Package: com.google.inject;version="3.0.0",
  net.enilink.komma.em.util,
  net.enilink.komma.internal.sesame,
  net.enilink.komma.sesame,
- org.numerateweb.math.rdf,
  org.openrdf.model.impl;version="2.7.9",
  org.openrdf.repository;version="2.7.9",
  org.openrdf.repository.base;version="2.7.9",
@@ -22,3 +21,4 @@ Import-Package: com.google.inject;version="3.0.0",
  org.openrdf.sail;version="2.7.9",
  org.openrdf.sail.memory;version="2.7.9"
 Require-Bundle: net.enilink.komma.model
+Export-Package: net.enilink.komma.example.objectmapping.util

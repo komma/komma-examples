@@ -6,7 +6,7 @@ import net.enilink.komma.core.IEntityManager;
 import net.enilink.komma.core.IEntityManagerFactory;
 import net.enilink.komma.core.KommaModule;
 import net.enilink.komma.core.URI;
-import net.enilink.komma.core.URIImpl;
+import net.enilink.komma.core.URIs;
 import net.enilink.komma.example.behaviour.model.ActivityDefinition;
 import net.enilink.komma.example.behaviour.model.ActivityInstance;
 import net.enilink.komma.example.behaviour.model.DefinitionAspect;
@@ -36,7 +36,7 @@ import com.google.inject.Injector;
 public class Main {
 
 	final static String URI_STRING = "urn:enilink.net:komma:behaviour-example#";
-	final static URI bexNS = URIImpl.createURI(URI_STRING);
+	final static URI bexNS = URIs.createURI(URI_STRING);
 
 	private static void demonstrateProcess(IEntityManager manager) {
 		// create a process
