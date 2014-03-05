@@ -51,7 +51,7 @@ public class Main {
 				}));
 
 		// Create a book and add some authors
-		Book book = manager.createNamed(Library.URI.appendFragment("book1"),
+		Book book = manager.createNamed(Library.NS_URI.appendFragment("book1"),
 				Book.class);
 		book.setTitle("Point of No Return");
 		book.getAuthors().add(
@@ -108,7 +108,7 @@ public class Main {
 			throw new RuntimeException(e);
 		}
 
-		Person person = manager.createNamed(Library.URI.appendFragment(id),
+		Person person = manager.createNamed(Library.NS_URI.appendFragment(id),
 				Person.class);
 		person.setName(name);
 		person.setDateOfBirth(cal);
@@ -125,7 +125,7 @@ public class Main {
 
 		System.out.println("Do a raw query:");
 		IQuery<?> query = manager.createQuery( //
-				"PREFIX om: <" + Library.URI_STRING + ">" //
+				"PREFIX om: <" + Library.NS + ">" //
 						+ "SELECT ?title ?author ?authorDateOfBirth WHERE { " //
 						+ "?book om:title ?title . " //
 						+ "?book om:author ?person . " //
@@ -154,7 +154,7 @@ public class Main {
 				.createQuery(
 						ISparqlConstants.PREFIX
 								+ "SELECT ?person ?clazz WHERE {?person rdf:type ?clazz}")
-				.setParameter("clazz", Library.URI.appendLocalPart("Person"));
+				.setParameter("clazz", Library.NS_URI.appendLocalPart("Person"));
 
 		// Expected output:
 		// Name: Clint Eastwood
@@ -182,7 +182,7 @@ public class Main {
 		IQuery<?> query = manager.createQuery(
 				ISparqlConstants.PREFIX
 						+ "SELECT ?book WHERE { ?book rdf:type ?clazz .  }")
-				.setParameter("clazz", Library.URI.appendLocalPart("Book"));
+				.setParameter("clazz", Library.NS_URI.appendLocalPart("Book"));
 
 		for (IBindings<?> bindings : query.evaluate(IBindings.class)) {
 			System.out.println(bindings.get("book"));
@@ -193,7 +193,7 @@ public class Main {
 		query = manager.createQuery(
 				ISparqlConstants.PREFIX
 						+ "SELECT ?book WHERE { ?book rdf:type ?clazz .  }")
-				.setParameter("clazz", Library.URI.appendLocalPart("Book"));
+				.setParameter("clazz", Library.NS_URI.appendLocalPart("Book"));
 
 		// Expected output:
 		// Select all books
