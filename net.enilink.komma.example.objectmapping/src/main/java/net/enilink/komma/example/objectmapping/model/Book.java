@@ -8,8 +8,8 @@ import net.enilink.composition.annotations.Iri;
 public interface Book extends Document {
 
 	@Iri(Library.NS + "author")
-	Set<Person> getAuthors();
+	Set<Person> authors();
 
-	void setAuthors(Set<Person> persons);
+	Document authors(Set<Person> persons);
 
 }

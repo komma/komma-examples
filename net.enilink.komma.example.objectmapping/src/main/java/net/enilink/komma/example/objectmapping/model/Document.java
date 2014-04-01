@@ -8,13 +8,13 @@ import net.enilink.composition.annotations.Iri;
 public interface Document {
 
 	@Iri(Library.NS + "dateOfRelease")
-	XMLGregorianCalendar getDateOfRelease();
+	XMLGregorianCalendar dateOfRelease();
 
-	void setDateOfRelease(XMLGregorianCalendar dateOfRelease);
+	Document dateOfRelease(XMLGregorianCalendar dateOfRelease);
 
 	@Iri(Library.NS + "title")
-	String getTitle();
+	String title();
 
-	void setTitle(String title);
+	Document title(String title);
 
 }

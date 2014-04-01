@@ -37,8 +37,6 @@ public class Main {
 		// We have to tell this manager to use the Book and Person interfaces to
 		// encapsulate access to instances and properties of Books or Persons.
 		// We have to register them as Concepts.
-		//
-		// Here we create an entity manager on top of Sesame's MemoryStore
 
 		SailRepository dataRepository = new SailRepository(new MemoryStore());
 		dataRepository.initialize();
@@ -53,16 +51,19 @@ public class Main {
 		// Create a book and add some authors
 		Book book = manager.createNamed(Library.NS_URI.appendFragment("book1"),
 				Book.class);
-		book.setTitle("Point of No Return");
-		book.getAuthors().add(
+		// Set properties using method chaining
+		book.title("Point of No Return").dateOfRelease(getCurrentTime());
+
+		book.authors().add(
 				createPerson(manager, "person1", "Clint Eastwood", new Date()));
-		book.getAuthors().add(
+		book.authors().add(
 				createPerson(manager, "person2", "Marty McFly", new Date()));
 
 		// This results in the following RDF statements
 		// @Prefix om: <http://enilink.net/examples/objectmapping#>
 		// om:book1 rdf:type om:Book
 		// om:book1 rdf:type om:Document
+		// om:book1 om:dateOfRelease "..."^^xsd:datetime
 		// om:book1 om:title "Point of No Return"
 		// om:person1 rdf:type om:Person
 		// om:person1 om:name "Clint Eastwood"
@@ -99,15 +100,7 @@ public class Main {
 
 	private static Person createPerson(IEntityManager manager, String id,
 			String name, Date date) {
-		GregorianCalendar c = new GregorianCalendar();
-		c.setTime(new Date());
-		XMLGregorianCalendar cal = null;
-		try {
-			cal = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-		} catch (DatatypeConfigurationException e) {
-			throw new RuntimeException(e);
-		}
-
+		XMLGregorianCalendar cal = getCurrentTime();
 		Person person = manager.createNamed(Library.NS_URI.appendFragment(id),
 				Person.class);
 		person.setName(name);
@@ -204,4 +197,17 @@ public class Main {
 			System.out.println(bindings.get("book"));
 		}
 	}
+
+	private static XMLGregorianCalendar getCurrentTime() {
+		GregorianCalendar c = new GregorianCalendar();
+		c.setTime(new Date());
+		XMLGregorianCalendar cal = null;
+		try {
+			cal = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+		} catch (DatatypeConfigurationException e) {
+			throw new RuntimeException(e);
+		}
+		return cal;
+	}
+
 }
