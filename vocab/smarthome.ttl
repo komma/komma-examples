@@ -1,0 +1,60 @@
+@prefix smarthome: <http://enilink.net/vocab/smarthome#> .
+@prefix komma: <http://enilink.net/vocab/komma#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://enilink.net/vocab/smarthome> a owl:Ontology ;
+	owl:imports <http://enilink.net/vocab/komma> .
+
+smarthome:Device a owl:Class ;
+	rdfs:subClassOf owl:Thing .
+
+smarthome:Floor a owl:Class ;
+	rdfs:subClassOf _:n1 .
+
+_:n1 a owl:Restriction ;
+	owl:allValuesFrom smarthome:Room ;
+	owl:onProperty smarthome:contains .
+
+smarthome:Floor rdfs:subClassOf owl:Thing .
+
+smarthome:House a owl:Class ;
+	rdfs:subClassOf _:n2 .
+
+_:n2 a owl:Restriction ;
+	owl:allValuesFrom smarthome:Floor ;
+	owl:onProperty smarthome:contains .
+
+smarthome:House rdfs:subClassOf owl:Thing .
+
+smarthome:Lamp a owl:Class ;
+	rdfs:subClassOf smarthome:Device , smarthome:Switchable .
+
+smarthome:Room a owl:Class ;
+	rdfs:subClassOf _:n3 .
+
+_:n3 a owl:Restriction ;
+	owl:allValuesFrom smarthome:Device ;
+	owl:onProperty smarthome:contains .
+
+smarthome:Room rdfs:subClassOf owl:Thing .
+
+smarthome:Switch a owl:Class ;
+	rdfs:subClassOf _:n4 .
+
+_:n4 a owl:Restriction ;
+	owl:allValuesFrom smarthome:Switchable ;
+	owl:onProperty smarthome:controls .
+
+smarthome:Switch rdfs:subClassOf smarthome:Device , smarthome:Switchable .
+
+smarthome:Switchable a owl:Class ;
+	rdfs:subClassOf owl:Thing .
+
+smarthome:contains a owl:ObjectProperty ;
+	rdfs:subPropertyOf komma:contains .
+
+smarthome:controls a owl:ObjectProperty ;
+	rdfs:subPropertyOf komma:child .
