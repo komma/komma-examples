@@ -4,9 +4,9 @@ import java.util.Set;
 
 import net.enilink.composition.annotations.Iri;
 
-@Iri("http://enilink.net/vocab/smarthome#Switch")
+@Iri("http://komma.github.io/komma-examples/vocab/smarthome.ttl#Switch")
 public interface Switch extends Switchable {
-	@Iri("http://enilink.net/vocab/smarthome#controls")
+	@Iri("http://komma.github.io/komma-examples/vocab/smarthome.ttl#controls")
 	Set<Switchable> controls();
 
 	void controls(Set<Switchable> components);

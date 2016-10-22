@@ -9,7 +9,6 @@ import net.enilink.komma.core.IReference;
 import net.enilink.komma.edit.provider.IViewerNotification;
 import net.enilink.komma.edit.provider.ReflectiveItemProvider;
 import net.enilink.komma.edit.provider.ViewerNotification;
-import net.enilink.komma.em.concepts.IProperty;
 import net.enilink.komma.em.concepts.IResource;
 import net.enilink.komma.example.smarthome.model.SMARTHOME;
 import net.enilink.komma.example.smarthome.model.Switchable;
@@ -50,11 +49,5 @@ public class SmartHomeItemProvider extends ReflectiveItemProvider {
 			}
 		}
 		return super.getImage(object);
-	}
-	
-	@Override
-	protected Collection<? extends IProperty> getChildrenProperties(Object object) {
-		// TODO Auto-generated method stub
-		return super.getChildrenProperties(object);
 	}
 }

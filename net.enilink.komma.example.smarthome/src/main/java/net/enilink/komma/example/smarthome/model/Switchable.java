@@ -2,9 +2,9 @@ package net.enilink.komma.example.smarthome.model;
 
 import net.enilink.composition.annotations.Iri;
 
-@Iri("http://enilink.net/vocab/smarthome#Switchable")
+@Iri("http://komma.github.io/komma-examples/vocab/smarthome.ttl#Switchable")
 public interface Switchable {
-	@Iri("http://enilink.net/vocab/smarthome#on")
+	@Iri("http://komma.github.io/komma-examples/vocab/smarthome.ttl#on")
 	boolean on();
 
 	/**
