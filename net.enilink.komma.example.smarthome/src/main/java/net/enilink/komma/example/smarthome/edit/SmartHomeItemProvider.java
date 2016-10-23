@@ -11,6 +11,7 @@ import net.enilink.komma.edit.provider.ReflectiveItemProvider;
 import net.enilink.komma.edit.provider.ViewerNotification;
 import net.enilink.komma.em.concepts.IResource;
 import net.enilink.komma.example.smarthome.model.SMARTHOME;
+import net.enilink.komma.example.smarthome.model.Switch;
 import net.enilink.komma.example.smarthome.model.Switchable;
 import net.enilink.komma.model.event.IStatementNotification;
 import net.enilink.vocab.rdfs.Class;
@@ -39,13 +40,14 @@ public class SmartHomeItemProvider extends ReflectiveItemProvider {
 	@Override
 	public Object getImage(Object object) {
 		// use special "off" icons for switchables
-		if (object instanceof Switchable && !((Switchable) object).on()) {
+		if (object instanceof Switchable) {
+			boolean off = !((Switchable) object).on();
 			String prefix = "full/obj16/";
 			Collection<?> types = getTypes(object);
-			if (types.contains(SMARTHOME.TYPE_SWITCH)) {
-				return getImage(prefix + "Switch-off");
+			if (object instanceof Switch) {
+				return getImage(prefix + "Switch" + (off ? "-off" : ""));
 			} else if (types.contains(SMARTHOME.TYPE_LAMP)) {
-				return getImage(prefix + "Lamp-off");
+				return getImage(prefix + "Lamp" + (off ? "-off" : ""));
 			}
 		}
 		return super.getImage(object);

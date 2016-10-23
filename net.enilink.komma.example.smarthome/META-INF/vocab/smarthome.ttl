@@ -20,6 +20,9 @@ _:n1 a owl:Restriction ;
 
 smarthome:Floor rdfs:subClassOf owl:Thing .
 
+smarthome:FloorWideSwitch a owl:Class ;
+	rdfs:subClassOf smarthome:Device , smarthome:Switch .
+
 smarthome:House a owl:Class ;
 	rdfs:subClassOf _:n2 .
 

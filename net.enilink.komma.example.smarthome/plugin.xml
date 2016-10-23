@@ -6,7 +6,7 @@
       <factory
             class="net.enilink.komma.example.smarthome.edit.SmartHomeAdapterFactory"
             supportedTypes="net.enilink.komma.edit.provider.IItemLabelProvider"
-            uri="http://enilink.net/vocab/smarthome#">
+            uri="http://komma.github.io/komma-examples/vocab/smarthome.ttl#">
       </factory>
    </extension>
    <extension
@@ -18,7 +18,7 @@
    <extension
          point="net.enilink.komma.model.uriMapRules">
       <rule
-            pattern="http://enilink.net/vocab/smarthome"
+            pattern="http://komma.github.io/komma-examples/vocab/smarthome.ttl"
             priority="5"
             replacement="platform:/plugin/net.enilink.komma.example.smarthome/META-INF/vocab/smarthome.ttl">
       </rule>

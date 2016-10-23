@@ -1,4 +1,4 @@
-@prefix smarthome: <http://enilink.net/vocab/smarthome#> .
+@prefix smarthome: <http://komma.github.io/komma-examples/vocab/smarthome.ttl#> .
 @prefix komma: <http://enilink.net/vocab/komma#> .
 @prefix : <http://example.org/komma/smarthome-example.ttl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -7,7 +7,10 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 <http://example.org/komma/smarthome-example.ttl> a owl:Ontology ;
-	owl:imports <http://enilink.net/vocab/smarthome> .
+	owl:imports <http://komma.github.io/komma-examples/vocab/smarthome.ttl> .
+
+:1st-Floor-Switch smarthome:on false ;
+	a smarthome:FloorWideSwitch .
 
 :1st_floor smarthome:contains :Corridor , :Kitchen , :Living_Room ;
 	a smarthome:Floor ;
@@ -19,38 +22,45 @@
 
 :Bath a smarthome:Room .
 
-:CentralSwitch smarthome:controls :Switch1 , :Switch2 ;
-	smarthome:on true ;
-	a smarthome:Switch .
-
-:Corridor smarthome:contains :CentralSwitch ;
+:Corridor smarthome:contains :1st-Floor-Switch , :Lamp , :Switch-C ;
 	a smarthome:Room .
 
-:Kitchen smarthome:contains :Lamp1 , :Lamp2 , :Switch1 , :Switch2 ;
+:Kitchen smarthome:contains :Lamp1 , :Lamp2 , :Switch-K ;
 	a smarthome:Room .
 
-:Lamp1 smarthome:on true ;
+:Lamp smarthome:on false ;
 	a smarthome:Lamp .
 
-:Lamp2 smarthome:on true ;
+:Lamp1 smarthome:on false ;
 	a smarthome:Lamp .
 
-:Living_Room a smarthome:Room ;
+:Lamp2 smarthome:on false ;
+	a smarthome:Lamp .
+
+:Lamp3 smarthome:on false ;
+	a smarthome:Lamp .
+
+:Living_Room smarthome:contains :Lamp3 , :Switch-LR-1 , :Switch-LR-2 ;
+	a smarthome:Room ;
 	rdfs:label "Living Room" .
 
 :Sleeping_Room a smarthome:Room ;
 	rdfs:label "Sleeping Room" .
 
-:Switch1 smarthome:controls :Lamp1 , :Switch2 ;
-	smarthome:on true ;
+:Switch-C smarthome:controls :Lamp , :Switch-K , :Switch-LR-1 ;
+	smarthome:on false ;
 	a smarthome:Switch .
 
-:Switch2 smarthome:controls :Lamp2 ;
-	smarthome:on true ;
+:Switch-K smarthome:controls :Lamp1 , :Lamp2 ;
+	smarthome:on false ;
 	a smarthome:Switch .
 
-:Switch3 smarthome:controls :Lamp2 ;
-	smarthome:on true ;
+:Switch-LR-1 smarthome:controls :Lamp3 ;
+	smarthome:on false ;
+	a smarthome:Switch .
+
+:Switch-LR-2 smarthome:controls :Lamp3 , :Switch-K ;
+	smarthome:on false ;
 	a smarthome:Switch .
 
 :myHouse smarthome:contains :1st_floor , :2nd_floor ;
