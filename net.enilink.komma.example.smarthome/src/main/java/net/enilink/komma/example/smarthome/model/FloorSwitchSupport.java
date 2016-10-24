@@ -9,21 +9,29 @@ import net.enilink.komma.core.ITransaction;
 import net.enilink.komma.model.ModelUtil;
 import net.enilink.vocab.rdfs.RDFS;
 
-@Iri("http://komma.github.io/komma-examples/vocab/smarthome.ttl#FloorWideSwitch")
-public abstract class FloorWideSwitchSupport implements Switch, IEntity, Behaviour<Switch> {
+@Iri("http://komma.github.io/komma-examples/vocab/smarthome.ttl#FloorSwitch")
+public abstract class FloorSwitchSupport implements Switch, IEntity, Behaviour<Switch> {
 	public static final String PREFIX = "PREFIX rdfs: <" + RDFS.NAMESPACE + "> PREFIX sh: <" + //
 			SMARTHOME.NAMESPACE + "> ";
 
 	@Override
 	public String label() {
-		return ModelUtil.getLabel(getBehaviourDelegate());
+		// query number of controlled switches
+		IQuery<?> query = getEntityManager()
+				.createQuery(PREFIX
+						+ "select (count(distinct ?target) as ?count) where { ?floor a sh:Floor; sh:contains+ ?this; " + //
+						"sh:contains+ ?target . ?target a [rdfs:subClassOf* sh:Switch] filter not exists { ?target a sh:FloorSwitch } }")
+				.setParameter("this", this);
+		Integer nrControlled = query.bindResultType(Integer.class).getSingleResult();
+		return ModelUtil.getLabel(getBehaviourDelegate()) + " - controls " + nrControlled + " switches";
 	}
 
 	public void on(boolean on) {
-		IQuery<?> query = getEntityManager().createQuery(PREFIX
-				+ "select ?target where { ?floor a sh:Floor; sh:contains+ ?this; " + //
-				"sh:contains+ ?target . ?target a [rdfs:subClassOf* sh:Switchable] filter (?target != ?this) }");
-		query.setParameter("this", this);
+		// query controlled switches
+		IQuery<?> query = getEntityManager()
+				.createQuery(PREFIX + "select ?target where { ?floor a sh:Floor; sh:contains+ ?this; " + //
+						"sh:contains+ ?target . ?target a [rdfs:subClassOf* sh:Switch] filter not exists { ?target a sh:FloorSwitch } }")
+				.setParameter("this", this);
 		withTransaction(() -> {
 			try (IExtendedIterator<Switchable> targets = query.evaluate(Switchable.class)) {
 				targets.forEach(t -> t.on(on));

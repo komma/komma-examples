@@ -10,7 +10,7 @@
 	owl:imports <http://komma.github.io/komma-examples/vocab/smarthome.ttl> .
 
 :1st-Floor-Switch smarthome:on false ;
-	a smarthome:FloorWideSwitch .
+	a smarthome:FloorSwitch .
 
 :1st_floor smarthome:contains :Corridor , :Kitchen , :Living_Room ;
 	a smarthome:Floor ;

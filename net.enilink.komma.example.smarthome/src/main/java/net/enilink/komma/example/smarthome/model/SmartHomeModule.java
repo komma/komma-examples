@@ -9,6 +9,6 @@ public class SmartHomeModule extends KommaModule {
 		addConcept(Switchable.class);
 
 		addBehaviour(SwitchSupport.class);
-		addBehaviour(FloorWideSwitchSupport.class);
+		addBehaviour(FloorSwitchSupport.class);
 	}
 }
