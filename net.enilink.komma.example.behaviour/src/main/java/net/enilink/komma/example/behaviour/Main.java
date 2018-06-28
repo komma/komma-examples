@@ -2,6 +2,13 @@ package net.enilink.komma.example.behaviour;
 
 import java.util.Arrays;
 
+import org.eclipse.rdf4j.repository.RepositoryException;
+import org.eclipse.rdf4j.repository.sail.SailRepository;
+import org.eclipse.rdf4j.sail.memory.MemoryStore;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import net.enilink.komma.core.IEntityManager;
 import net.enilink.komma.core.IEntityManagerFactory;
 import net.enilink.komma.core.KommaModule;
@@ -25,13 +32,6 @@ import net.enilink.komma.example.behaviour.runtime.TaskDefinitionSupport;
 import net.enilink.komma.example.behaviour.runtime.TaskInstanceSupport;
 import net.enilink.komma.example.behaviour.runtime.TransitionSupport;
 import net.enilink.komma.example.objectmapping.util.ExampleModule;
-
-import org.openrdf.repository.RepositoryException;
-import org.openrdf.repository.sail.SailRepository;
-import org.openrdf.sail.memory.MemoryStore;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 
 public class Main {
 
