@@ -1,5 +1,10 @@
 package net.enilink.komma.example.objectmapping.util;
 
+import org.eclipse.rdf4j.repository.Repository;
+
+import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
+
 import net.enilink.komma.core.IUnitOfWork;
 import net.enilink.komma.core.KommaModule;
 import net.enilink.komma.dm.IDataManager;
@@ -8,12 +13,7 @@ import net.enilink.komma.em.CacheModule;
 import net.enilink.komma.em.CachingEntityManagerModule;
 import net.enilink.komma.em.EntityManagerFactoryModule;
 import net.enilink.komma.em.util.UnitOfWork;
-import net.enilink.komma.sesame.SesameModule;
-
-import org.openrdf.repository.Repository;
-
-import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
+import net.enilink.komma.rdf4j.RDF4JModule;
 
 public class ExampleModule extends AbstractModule {
 
@@ -27,7 +27,7 @@ public class ExampleModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		install(new SesameModule());
+		install(new RDF4JModule());
 		install(new EntityManagerFactoryModule(kommaModule, null,
 				new CachingEntityManagerModule()));
 		install(new CacheModule("myCache"));

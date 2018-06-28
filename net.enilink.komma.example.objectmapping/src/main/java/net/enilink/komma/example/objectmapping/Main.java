@@ -7,6 +7,13 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.eclipse.rdf4j.repository.RepositoryException;
+import org.eclipse.rdf4j.repository.sail.SailRepository;
+import org.eclipse.rdf4j.sail.memory.MemoryStore;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import net.enilink.komma.core.IBindings;
 import net.enilink.komma.core.IEntityManager;
 import net.enilink.komma.core.IEntityManagerFactory;
@@ -17,13 +24,6 @@ import net.enilink.komma.example.objectmapping.model.Book;
 import net.enilink.komma.example.objectmapping.model.Library;
 import net.enilink.komma.example.objectmapping.model.Person;
 import net.enilink.komma.example.objectmapping.util.ExampleModule;
-
-import org.openrdf.repository.RepositoryException;
-import org.openrdf.repository.sail.SailRepository;
-import org.openrdf.sail.memory.MemoryStore;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 
 public class Main {
 
@@ -83,6 +83,10 @@ public class Main {
 		exampleRawQuery(manager);
 		System.out.println(".........");
 		exampleMappedQuery(manager);
+		System.out.println(".........");
+		examplePrefetchPropertyValues(manager);
+		System.out.println(".........");
+		examplePrefetchWholeGraph(manager);
 		System.out.println(".........");
 		exampleRemoveObjectAndQuery(manager, book);
 		System.out.println(".........");
@@ -146,23 +150,70 @@ public class Main {
 		IQuery<?> query = manager
 				.createQuery(
 						ISparqlConstants.PREFIX
-								+ "SELECT ?person ?clazz WHERE {?person rdf:type ?clazz}")
-				.setParameter("clazz", Library.NS_URI.appendLocalPart("Person"));
+								+ "SELECT ?person WHERE { ?person a ?type }")
+				.setTypeParameter("type", Person.class);
 
 		// Expected output:
 		// Name: Clint Eastwood
-		// Place of birth:null
+		// Date of birth: 2018-06-28T21:35:52.209+02:00
 		// Name: Marty McFly
-		// Place of birth:null
+		// Date of birth: 2018-06-28T21:35:52.245+02:00
 
-		for (IBindings<?> bindings : query.evaluate(IBindings.class)) {
-			Person person = (Person) bindings.get("person");
+		for (Person person : query.evaluate(Person.class)) {
 			System.out.println("Name: " + person.getName());
-			System.out.println("Place of birth:" + person.getPlaceOfBirth());
+			System.out.println("Date of birth: " + person.getDateOfBirth());
 		}
+	}
+	
+	private static void examplePrefetchPropertyValues(IEntityManager manager) {
 
-		// Please note, because of the fact that we did not set any place of
-		// birth. The respective getter returns null.
+		// KOMMA also supports eager loading of property values by
+		// using SPARQL CONSTRUCT queries.
+
+		System.out.println("Do a construct query for eager loading:");
+		IQuery<?> query = manager
+				.createQuery(
+						ISparqlConstants.PREFIX
+								+ "CONSTRUCT { ?person a <komma:Result> ; ?p ?o } WHERE { ?person a ?type; ?p ?o }")
+				.setTypeParameter("type", Person.class);
+
+		// Expected output:
+		// Name: Clint Eastwood
+		// Date of birth: 2018-06-28T21:35:52.209+02:00
+		// Name: Marty McFly
+		// Date of birth: 2018-06-28T21:35:52.245+02:00
+
+		for (Person person : query.evaluate(Person.class)) {
+			System.out.println("Name: " + person.getName());
+			System.out.println("Date of birth: " + person.getDateOfBirth());
+		}
+	}
+	
+	private static void examplePrefetchWholeGraph(IEntityManager manager) {
+
+		// KOMMA also supports eager loading an RDF graph of arbitrary depth by
+		// using SPARQL CONSTRUCT queries with property paths.
+		
+		System.out.println("Do a construct query for eager loading:");
+		IQuery<?> query = manager
+				.createQuery(
+						ISparqlConstants.PREFIX
+								+ "CONSTRUCT { ?book a <komma:Result> . ?s ?p ?o } WHERE { ?book a ?type; !<:> ?s . ?s ?p ?o }")
+				.setTypeParameter("type", Book.class);
+
+		// Expected output:
+		// Title: Point of No Return
+		// 		Author: Clint Eastwood
+		// 		Author: Marty McFly
+
+		for (Book book : query.evaluate(Book.class)) {
+			// No additional SPARQL queries are required to access the bean properties here.
+
+			System.out.println("Title: " + book.title());
+			for (Person author : book.authors()) {
+				System.out.println("	Author: " + author.getName());
+			}
+		}
 	}
 
 	private static void exampleRemoveObjectAndQuery(IEntityManager manager,
@@ -174,8 +225,8 @@ public class Main {
 
 		IQuery<?> query = manager.createQuery(
 				ISparqlConstants.PREFIX
-						+ "SELECT ?book WHERE { ?book rdf:type ?clazz .  }")
-				.setParameter("clazz", Library.NS_URI.appendLocalPart("Book"));
+						+ "SELECT ?book WHERE { ?book a ?clazz .  }")
+				.setTypeParameter("type", Book.class);
 
 		for (IBindings<?> bindings : query.evaluate(IBindings.class)) {
 			System.out.println(bindings.get("book"));
@@ -185,8 +236,8 @@ public class Main {
 		System.out.println("Select all books ... again!");
 		query = manager.createQuery(
 				ISparqlConstants.PREFIX
-						+ "SELECT ?book WHERE { ?book rdf:type ?clazz .  }")
-				.setParameter("clazz", Library.NS_URI.appendLocalPart("Book"));
+						+ "SELECT ?book WHERE { ?book a ?type .  }")
+				.setTypeParameter("type", Book.class);
 
 		// Expected output:
 		// Select all books
