@@ -1,29 +1,32 @@
 Manifest-Version: 1.0
+Bnd-LastModified: 1579613236287
+Bundle-Description: This is an example project for the usage of the KO
+ MMA framework.
+Bundle-Developers: kenwenzel;name="Ken Wenzel";roles="architect,develo
+ per",mfriedemann;name="Marko Friedemann";roles=developer,rehei;name="
+ Heiner Reinhardt";roles=developer
+Bundle-DocURL: https://komma.enilink.net/net.enilink.komma.example.obj
+ ectmapping/
+Bundle-License: "Eclipse Public License v2.0";link="https://www.eclips
+ e.org/legal/epl-2.0/"
 Bundle-ManifestVersion: 2
-Bundle-Name: Objectmapping
+Bundle-Name: KOMMA: Object Mapping Example
 Bundle-SymbolicName: net.enilink.komma.example.objectmapping
-Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Import-Package: com.google.inject;version="1.4.0",
- com.google.inject.binder;version="1.4.0",
- javax.inject,
- net.enilink.composition.annotations,
- net.enilink.komma.core,
- net.enilink.komma.dm,
- net.enilink.komma.em,
- net.enilink.komma.em.util,
- net.enilink.komma.rdf4j,
- org.aopalliance.intercept,
- org.eclipse.rdf4j.repository;version="2.0.0",
- org.eclipse.rdf4j.repository.base;version="2.0.0",
- org.eclipse.rdf4j.repository.sail;version="2.0.0",
- org.eclipse.rdf4j.sail.memory;version="2.0.0"
-Require-Bundle: net.enilink.komma.model,
- org.slf4j.api,
- org.slf4j.jcl,
- com.google.guava,
- org.apache.httpcomponents.httpclient,
- net.enilink.komma.literals,
- org.objectweb.asm.all,
- net.enilink.composition.properties.komma
-Export-Package: net.enilink.komma.example.objectmapping.util
+Bundle-Vendor: Fraunhofer IWU
+Bundle-Version: 1.4.1.202001211327
+Created-By: 1.8.0_201 (Oracle Corporation)
+Import-Package: com.google.inject;version="[1.4,2)",com.google.inject.
+ binder;version="[1.4,2)",javax.xml.datatype,net.enilink.commons.itera
+ tor;version="[1.4,2)",net.enilink.composition.annotations;version="[1
+ .4,2)",net.enilink.komma.core;version="[1.4,2)",net.enilink.komma.dm;
+ version="[1.4,2)",net.enilink.komma.em;version="[1.4,2)",net.enilink.
+ komma.em.util;version="[1.4,2)",net.enilink.komma.rdf4j;version="[1.4
+ ,2)",org.eclipse.rdf4j.repository;version="[3.0,4)",org.eclipse.rdf4j
+ .repository.sail;version="[3.0,4)",org.eclipse.rdf4j.sail;version="[3
+ .0,4)",org.eclipse.rdf4j.sail.memory;version="[3.0,4)"
+Private-Package: net.enilink.komma.example.objectmapping,net.enilink.k
+ omma.example.objectmapping.model,net.enilink.komma.example.objectmapp
+ ing.util
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-4.3.1.201911131708
+

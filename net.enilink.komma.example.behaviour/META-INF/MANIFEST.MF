@@ -1,14 +1,26 @@
 Manifest-Version: 1.0
+Bnd-LastModified: 1579613238443
+Bundle-Description: This is an example project for the usage of the KO
+ MMA framework.
+Bundle-Developers: kenwenzel;name="Ken Wenzel";roles="architect,develo
+ per",mfriedemann;name="Marko Friedemann";roles=developer,rehei;name="
+ Heiner Reinhardt";roles=developer
+Bundle-DocURL: https://komma.enilink.net/net.enilink.komma.example.beh
+ aviour/
+Bundle-License: "Eclipse Public License v2.0";link="https://www.eclips
+ e.org/legal/epl-2.0/"
 Bundle-ManifestVersion: 2
-Bundle-Name: KOMMA - behaviour example
+Bundle-Name: KOMMA: Behaviour Example
 Bundle-SymbolicName: net.enilink.komma.example.behaviour
-Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Require-Bundle: net.enilink.komma.example.objectmapping;bundle-version="1.0.0",
- net.enilink.komma.core,
- net.enilink.composition,
- net.enilink.commons.iterator,
- org.eclipse.rdf4j,
- net.enilink.komma.em
-Import-Package: com.google.inject
-Bundle-Vendor: enilink.net
+Bundle-Vendor: Fraunhofer IWU
+Bundle-Version: 1.4.1.202001211327
+Created-By: 1.8.0_201 (Oracle Corporation)
+Import-Package: net.enilink.commons.iterator;version="[1.4,2)",net.eni
+ link.composition.annotations;version="[1.4,2)",net.enilink.compositio
+ n.traits;version="[1.4,2)",net.enilink.komma.core;version="[1.4,2)",o
+ rg.eclipse.rdf4j.repository;version="[3.0,4)"
+Private-Package: net.enilink.komma.example.behaviour,net.enilink.komma
+ .example.behaviour.model,net.enilink.komma.example.behaviour.runtime
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-4.3.1.201911131708
+
