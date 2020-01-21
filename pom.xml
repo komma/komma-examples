@@ -69,6 +69,9 @@
 			<plugin>
 				<groupId>biz.aQute.bnd</groupId>
 				<artifactId>bnd-maven-plugin</artifactId>
+				<configuration>
+					<manifestPath>${project.basedir}/META-INF/MANIFEST.MF</manifestPath>
+				</configuration>
 				<executions>
 					<execution>
 						<phase>compile</phase>
@@ -77,7 +80,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>			
+			</plugin>
 		</plugins>
 
 		<pluginManagement>
@@ -90,7 +93,7 @@
 						<source>1.8</source>
 						<target>1.8</target>
 					</configuration>
-				</plugin>				
+				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -117,36 +120,12 @@
 					<configuration>
 						<encoding>UTF-8</encoding>
 					</configuration>
-				</plugin>				
+				</plugin>
 
 				<plugin>
 					<groupId>biz.aQute.bnd</groupId>
 					<artifactId>bnd-maven-plugin</artifactId>
 					<version>4.3.1</version>
-				</plugin>
-
-				<plugin>
-					<artifactId>maven-resources-plugin</artifactId>
-					<executions>
-						<execution>
-							<id>copy-resources</id>
-							<phase>compile</phase>
-							<goals>
-								<goal>copy-resources</goal>
-							</goals>
-							<configuration>
-								<outputDirectory>${project.basedir}/META-INF</outputDirectory>
-								<resources>
-									<resource>
-										<directory>${project.build.outputDirectory}/META-INF</directory>
-										<includes>
-											<include>MANIFEST.MF</include>
-										</includes>
-									</resource>
-								</resources>
-							</configuration>
-						</execution>
-					</executions>
 				</plugin>
 
 				<plugin>
@@ -163,7 +142,7 @@
 							</fileset>
 						</filesets>
 					</configuration>
-				</plugin>				
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
@@ -195,4 +174,25 @@
 		<module>net.enilink.komma.example.objectmapping</module>
 		<module>net.enilink.komma.example.smarthome</module>
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.enilink.komma</groupId>
+			<artifactId>net.enilink.komma.model</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>sonatype-releases</id>
+			<url>http://oss.sonatype.org/content/repositories/releases</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
