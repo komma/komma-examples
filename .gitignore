@@ -1,2 +1,5 @@
-.directory
-bin/
+MANIFEST.MF
+target/
+.settings/
+.classpath
+.project
