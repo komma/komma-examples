@@ -31,7 +31,6 @@ import net.enilink.komma.example.behaviour.runtime.ProcessInstanceSupport;
 import net.enilink.komma.example.behaviour.runtime.TaskDefinitionSupport;
 import net.enilink.komma.example.behaviour.runtime.TaskInstanceSupport;
 import net.enilink.komma.example.behaviour.runtime.TransitionSupport;
-import net.enilink.komma.example.objectmapping.util.ExampleModule;
 
 public class Main {
 
@@ -192,7 +191,7 @@ public class Main {
 		dataRepository.initialize();
 
 		// create an entity manager and register concepts
-		IEntityManager manager = createEntityManager(new ExampleModule(
+		IEntityManager manager = createEntityManager(new ApplicationModule(
 				dataRepository, new KommaModule() {
 					{
 						// model classes, definition
@@ -222,7 +221,7 @@ public class Main {
 		demonstrateProcess(manager);
 	}
 
-	private static IEntityManager createEntityManager(ExampleModule module) {
+	private static IEntityManager createEntityManager(ApplicationModule module) {
 		Injector injector = Guice.createInjector(module);
 		IEntityManagerFactory factory = injector
 				.getInstance(IEntityManagerFactory.class);
