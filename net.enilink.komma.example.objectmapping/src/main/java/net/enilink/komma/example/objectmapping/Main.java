@@ -29,17 +29,14 @@ public class Main {
 
 	public static void main(String[] args)
 			throws DatatypeConfigurationException, RepositoryException {
-
-		// Amongst others, access to data can be managed with KOMMA by
-		// implementations of IEntityManager. In this tutorial we create an
-		// EntityManager on top of Sesame's MemoryStore.
+		// Initialize an RDF4J memory store and wrap it by an entity manager.
 		//
 		// We have to tell this manager to use the Book and Person interfaces to
 		// encapsulate access to instances and properties of Books or Persons.
 		// We have to register them as Concepts.
 
 		SailRepository dataRepository = new SailRepository(new MemoryStore());
-		dataRepository.initialize();
+		dataRepository.init();
 		IEntityManager manager = createEntityManager(new ExampleModule(
 				dataRepository, new KommaModule() {
 					{

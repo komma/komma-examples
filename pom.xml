@@ -14,6 +14,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<komma.version>1.6.1</komma.version>
 	</properties>
 
 	<organization>
@@ -69,9 +70,6 @@
 			<plugin>
 				<groupId>biz.aQute.bnd</groupId>
 				<artifactId>bnd-maven-plugin</artifactId>
-				<configuration>
-					<manifestPath>${project.basedir}/META-INF/MANIFEST.MF</manifestPath>
-				</configuration>
 				<executions>
 					<execution>
 						<phase>compile</phase>
@@ -88,10 +86,9 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.5.1</version>
+					<version>3.8.1</version>
 					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
+						<release>11</release>
 					</configuration>
 				</plugin>
 
@@ -125,7 +122,7 @@
 				<plugin>
 					<groupId>biz.aQute.bnd</groupId>
 					<artifactId>bnd-maven-plugin</artifactId>
-					<version>4.3.1</version>
+					<version>6.3.1</version>
 				</plugin>
 
 				<plugin>
@@ -172,6 +169,7 @@
 	<modules>
 		<module>net.enilink.komma.example.behaviour</module>
 		<module>net.enilink.komma.example.objectmapping</module>
+		<module>net.enilink.komma.example.jackson</module>
 		<module>net.enilink.komma.example.smarthome</module>
 	</modules>
 
@@ -179,7 +177,7 @@
 		<dependency>
 			<groupId>net.enilink.komma</groupId>
 			<artifactId>net.enilink.komma.model</artifactId>
-			<version>1.4.0</version>
+			<version>${komma.version}</version>
 		</dependency>
 	</dependencies>
 

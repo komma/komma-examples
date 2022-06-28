@@ -188,7 +188,7 @@ public class Main {
 
 		// create a sesame repository
 		SailRepository dataRepository = new SailRepository(new MemoryStore());
-		dataRepository.initialize();
+		dataRepository.init();
 
 		// create an entity manager and register concepts
 		IEntityManager manager = createEntityManager(new ApplicationModule(

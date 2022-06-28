@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+		xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>KOMMA: Jackson Integration Example</name>
+
+	<parent>
+		<groupId>net.enilink.komma.example</groupId>
+		<artifactId>examples-parent</artifactId>
+		<version>1.4.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>net.enilink.komma.example.jackson</artifactId>
+	<packaging>jar</packaging>
+
+	<properties>
+		<jackson.version>2.11.4</jackson.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.enilink.komma.example</groupId>
+			<artifactId>net.enilink.komma.example.objectmapping</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+</project>
