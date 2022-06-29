@@ -1,0 +1,13 @@
+= Welcome to the KOMMA examples repository.
+
+This repository contains examples for using KOMMA as RDF object mapper and editing framework in Java.
+
+== Structure of the repository
+
+The repository is structured as follows:
+
+net.enilink.komma.example.behaviour:: Shows how complex logic can be implemented by using KOMMA's object composition.
+net.enilink.komma.example.jackson:: Demonstrates how Jackson can be used to map KOMMA beans to JSON or XML.
+net.enilink.komma.example.objectmapping:: Demonstrates core features of KOMMA's RDF mapper.
+net.enilink.komma.example.smarthome:: Contains a complete example that combines object mapping with editing components for Eclipse.
+smarthome-launch:: Launcher project for an Eclipse IDE with the smart home example.

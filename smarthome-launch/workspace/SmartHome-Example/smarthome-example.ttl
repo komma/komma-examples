@@ -1,0 +1,68 @@
+@prefix smarthome: <http://komma.github.io/komma-examples/vocab/smarthome.ttl#> .
+@prefix komma: <http://enilink.net/vocab/komma#> .
+@prefix : <http://example.org/komma/smarthome-example.ttl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://example.org/komma/smarthome-example.ttl> a owl:Ontology ;
+	owl:imports <http://komma.github.io/komma-examples/vocab/smarthome.ttl> .
+
+:1st-Floor-Switch smarthome:on false ;
+	a smarthome:FloorSwitch .
+
+:1st_floor smarthome:contains :Corridor , :Kitchen , :Living_Room ;
+	a smarthome:Floor ;
+	rdfs:label "1st floor" .
+
+:2nd_floor smarthome:contains :Bath , :Sleeping_Room ;
+	a smarthome:Floor ;
+	rdfs:label "2nd floor" .
+
+:Bath a smarthome:Room .
+
+:Corridor smarthome:contains :1st-Floor-Switch , :Lamp , :Switch-C ;
+	a smarthome:Room .
+
+:Kitchen smarthome:contains :Lamp1 , :Lamp2 , :Switch-K ;
+	a smarthome:Room .
+
+:Lamp smarthome:on false ;
+	a smarthome:Lamp .
+
+:Lamp1 smarthome:on false ;
+	a smarthome:Lamp .
+
+:Lamp2 smarthome:on false ;
+	a smarthome:Lamp .
+
+:Lamp3 smarthome:on false ;
+	a smarthome:Lamp .
+
+:Living_Room smarthome:contains :Lamp3 , :Switch-LR-1 , :Switch-LR-2 ;
+	a smarthome:Room ;
+	rdfs:label "Living Room" .
+
+:Sleeping_Room a smarthome:Room ;
+	rdfs:label "Sleeping Room" .
+
+:Switch-C smarthome:controls :Lamp , :Switch-K , :Switch-LR-1 ;
+	smarthome:on false ;
+	a smarthome:Switch .
+
+:Switch-K smarthome:controls :Lamp1 , :Lamp2 ;
+	smarthome:on false ;
+	a smarthome:Switch .
+
+:Switch-LR-1 smarthome:controls :Lamp3 ;
+	smarthome:on false ;
+	a smarthome:Switch .
+
+:Switch-LR-2 smarthome:controls :Lamp3 , :Switch-K ;
+	smarthome:on false ;
+	a smarthome:Switch .
+
+:myHouse smarthome:contains :1st_floor , :2nd_floor ;
+	a smarthome:House ;
+	rdfs:label "My House" .

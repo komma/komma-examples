@@ -20,7 +20,7 @@
       <rule
             pattern="http://komma.github.io/komma-examples/vocab/smarthome.ttl"
             priority="5"
-            replacement="platform:/plugin/net.enilink.komma.example.smarthome/META-INF/vocab/smarthome.ttl">
+            replacement="platform:/plugin/net.enilink.komma.example.smarthome/vocab/smarthome.ttl">
       </rule>
    </extension>
    <extension

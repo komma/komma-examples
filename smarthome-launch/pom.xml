@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+		xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>net.enilink.komma</groupId>
+		<artifactId>komma-ide-launch</artifactId>
+		<version>1.6.1</version>
+		<relativePath>komma-ide-launch</relativePath>
+	</parent>
+
+	<groupId>net.enilink.komma.example</groupId>
+	<artifactId>launch-ide</artifactId>
+	<version>1.4.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>at.bestsolution</groupId>
+				<artifactId>maven-osgi-exec-plugin</artifactId>
+				<configuration>
+					<programArguments combine.self="override">
+						<programArgument>-console</programArgument>
+						<programArgument>-consoleLog</programArgument>
+						<programArgument>-application</programArgument>
+						<programArgument>org.eclipse.ui.ide.workbench</programArgument>
+						<programArgument>-perspective</programArgument>
+						<programArgument>net.enilink.komma.owl.editor.OWLPerspective</programArgument>
+						<programArgument>-clearPersistedState</programArgument>
+						<programArgument>-clean</programArgument>
+						<programArgument>-noExit</programArgument>
+					</programArguments>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<profiles>
+		<profile>
+			<id>configure</id>
+
+			<modules>
+				<module>komma-ide-launch/dependencies/org.apache.batik.css</module>
+				<module>komma-ide-launch/dependencies/javax.annotation</module>
+				<module>../net.enilink.komma.example.smarthome</module>
+			</modules>
+
+			<dependencies>
+				<dependency>
+					<groupId>net.enilink.komma.example</groupId>
+					<artifactId>net.enilink.komma.example.smarthome</artifactId>
+					<version>${project.version}</version>
+					<exclusions>
+						<exclusion>
+							<groupId>*</groupId>
+							<artifactId>*</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+</project>

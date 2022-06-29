@@ -1,0 +1,3 @@
+[submodule "smarthome-launch/komma-ide-launch"]
+	path = smarthome-launch/komma-ide-launch
+	url = https://github.com/komma/komma-ide-launch.git
