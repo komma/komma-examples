@@ -1,5 +1,8 @@
 package net.enilink.komma.example.smarthome.commands;
 
+import net.enilink.komma.dm.change.IDataChangeSupport;
+import net.enilink.komma.model.IModelSet;
+import net.enilink.komma.model.IObject;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -16,7 +19,16 @@ public class SwitchHandler extends AbstractHandler {
 		if (selection instanceof IStructuredSelection) {
 			for (Object selected : ((IStructuredSelection) selection).toList()) {
 				if (selected instanceof Switchable) {
-					((Switchable) selected).on(!((Switchable) selected).on());
+					IDataChangeSupport changeSupport = ((IObject) selected).getModel().getModelSet().getDataChangeSupport();
+					IDataChangeSupport.Mode mode = changeSupport.getMode(null);
+					try {
+						// speed up things by disabling in-depth verification of changed triples
+						changeSupport.setMode(null, IDataChangeSupport.Mode.VERIFY_NONE);
+
+						((Switchable) selected).on(!((Switchable) selected).on());
+					} finally {
+						changeSupport.setMode(null, mode);
+					}
 				}
 			}
 		}
