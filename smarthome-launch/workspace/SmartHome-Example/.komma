@@ -1,0 +1,3 @@
+@prefix models: <http://enilink.net/vocab/komma/models#> .
+
+<> a models:MemoryModelSet ; models:inference false .
