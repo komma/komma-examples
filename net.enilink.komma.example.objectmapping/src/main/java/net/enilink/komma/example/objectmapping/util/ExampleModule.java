@@ -30,7 +30,7 @@ public class ExampleModule extends AbstractModule {
 		install(new RDF4JModule());
 		install(new EntityManagerFactoryModule(kommaModule, null,
 				new CachingEntityManagerModule()));
-		install(new CacheModule("myCache"));
+		install(new CacheModule());
 
 		UnitOfWork uow = new UnitOfWork();
 		uow.begin();
@@ -38,10 +38,5 @@ public class ExampleModule extends AbstractModule {
 		bind(UnitOfWork.class).toInstance(uow);
 		bind(IUnitOfWork.class).toInstance(uow);
 		bind(Repository.class).toInstance(dataRepository);
-	}
-
-	@Provides
-	protected IDataManager provideDataManager(IDataManagerFactory dmFactory) {
-		return dmFactory.get();
 	}
 }
